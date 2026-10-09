@@ -1,0 +1,50 @@
+# Next SGCR experiment preset. Configuration only; no training is scheduled.
+# See sgcr_10k_4d_m500.md for preparation and runner requirements.
+inherits: sgcr.yaml
+experiment:
+  name: sgcr_10k_4d_m500_seed42
+  status: configuration_only
+  seed: 42
+  sample_limit: 10000
+  run_root: outputs/sgcr_10k_4d_m500/runs
+  baseline_output: outputs/sgcr_10k_4d_m500/static_baseline
+  shift_output: outputs/sgcr_10k_4d_m500/shift_validation
+data:
+  processed: data/processed/n10000_seed42
+  split_seed: 42
+domains:
+  method: crystal_system
+  num_domains: 4
+  assignments: data/domains/crystal4_n10000_seed42.csv
+  splits: data/domains/crystal4_n10000_splits_seed42.json
+  min_domain_size: 100
+  max_samples_per_domain: null
+  order_seed: 42
+  # Keep the first two old groups and separate cubic from hexagonal/trigonal.
+  # Sorted group IDs are 0,1,2,3; order_seed=42 presents them as [3,2,1,0].
+  groups:
+    triclinic_monoclinic: [triclinic, monoclinic]
+    orthorhombic_tetragonal: [orthorhombic, tetragonal]
+    hexagonal_trigonal: [hexagonal, trigonal]
+    cubic: [cubic]
+replay:
+  # Global retained-memory cap across all historical domains, not per domain.
+  size: 500
+replay_augmented:
+  # Includes the reserved 20%: at capacity, 400 replay + 100 reserved records.
+  memory_size: 500
+  probe_fraction: 0.20
+  current_replay_ratio: 1.0
+  # New split hashes must be recorded after preparing the new data/splits.
+  split_sha256: null
+  assignment_sha256: null
+  selection_embedding_cache: data/embeddings/sgcr_10k_4d_m500/structural_replay_selection
+v2:
+  cache: data/embeddings/sgcr_10k_4d_m500/prefix.pt
+  protocol: outputs/sgcr_10k_4d_m500/protocol.pt
+sgcr:
+  output_root: outputs/sgcr_10k_4d_m500
+  memory_size: 500
+  # A new benchmark cannot reproduce against the old 5k predictions/checkpoints.
+  baseline_reference: null
+  direct_reference: outputs/sgcr_10k_4d_m500/references/A_direct_predictor

@@ -1,0 +1,5 @@
+inherits: ../pilot.yaml
+experiment:
+  name: always_reuse
+router:
+  mode: always_reuse

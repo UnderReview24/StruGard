@@ -1,0 +1,5 @@
+inherits: ../pilot.yaml
+experiment:
+  name: no_adapt
+router:
+  mode: no_adapt

@@ -1,0 +1,25 @@
+inherits: replay_augmented.yaml
+experiment:
+  name: residual_method_5k_seed42
+  run_root: outputs/residual_method/verified/runs
+residual:
+  output_root: outputs/residual_method/verified
+  deterministic: true
+  shared_lr: 0.001
+  residual_lr: 0.001
+  rank: 16
+  dropout: 0.1
+  novelty_dim: 8
+  reuse_quantile: 0.9
+  novelty_quantile: 0.99
+  significant_ratio: 0.20
+  high_novelty_ratio: 0.05
+  epsilon_gain: 0.0
+  epochs: 10
+  shared_warmup_epochs: 5
+  memory_size: 2000
+  candidate_pool_size: 6000
+  probe_fraction: 0.20
+  checkpoint_selection: last_step
+  current_residual_gradient: end_to_end
+  replay_residual_gradient: frozen

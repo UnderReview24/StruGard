@@ -1,0 +1,56 @@
+inherits: sgcr_10k_4d_m500.yaml
+data:
+  processed: data/processed/full_seed42
+experiment:
+  name: full7_direct_ewc_sgcr_seed42
+  seed: 42
+  sample_limit: 132752
+  run_root: outputs/full7_direct_ewc_sgcr_seed42/runs
+  baseline_output: outputs/full7_direct_ewc_sgcr_seed42/unused_static_baseline
+  shift_output: outputs/full7_direct_ewc_sgcr_seed42/shared_d1
+domains:
+  num_domains: 7
+  assignments: data/domains/full7_seed42.csv
+  splits: data/domains/full7_splits_seed42.json
+  split_audit: data/domains/full7_split_audit_seed42.csv
+  order_names: [triclinic, monoclinic, orthorhombic, tetragonal, trigonal, hexagonal, cubic]
+  groups:
+    triclinic: [triclinic]
+    monoclinic: [monoclinic]
+    orthorhombic: [orthorhombic]
+    tetragonal: [tetragonal]
+    trigonal: [trigonal]
+    hexagonal: [hexagonal]
+    cubic: [cubic]
+v2:
+  cache: data/embeddings/full7_seed42/structural.pt
+  protocol: outputs/full7_direct_ewc_sgcr_seed42/protocol.pt
+replay_augmented:
+  assignment_sha256: null
+  split_sha256: null
+  selection_embedding_cache: data/embeddings/full7_seed42/structural_selection
+sgcr:
+  output_root: outputs/full7_direct_ewc_sgcr_seed42
+  shared_lr: 0.0005
+  projection_scale: 0.1
+  local_fraction: 0.25
+  lambda_conflict: 0.1
+  lambda_struct: 0.9
+  epochs_per_stage: 10
+  memory_size: 500
+  required_methods: [A_direct, B_online_ewc, E_full_sgcr]
+  baseline_reference: null
+  direct_reference: null
+ewc:
+  strength: 10.0
+  decay: 1.0
+  sample_size: 128
+full7:
+  requested_seeds: [42]
+  current_batch_size: 32
+  replay_batch_size: 32
+  full_test_used_for_selection: false
+  hyperparameters: fixed_before_full_test
+  sgcr_source: outputs/sgcr_10k_test_tuning/best_config.yaml
+  ewc_source: existing OnlineEWC defaults
+  later_checkpoint_selection: last_step

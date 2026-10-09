@@ -1,0 +1,5 @@
+inherits: ../pilot.yaml
+experiment:
+  name: rae_random_replay
+replay:
+  method: random

@@ -1,0 +1,15 @@
+inherits: scale30000.yaml
+experiment:
+  name: mp_eform_full_seed42
+  sample_limit: 132752
+  seed: 42
+  run_root: outputs/full_seed42
+  baseline_output: outputs/baseline_full_seed42
+  shift_output: outputs/shift_full_seed42
+data:
+  processed: data/processed/full
+  split_seed: 42
+domains:
+  assignments: data/domains/crystal5_full.csv
+  splits: data/domains/crystal5_full_splits42.json
+  order_seed: 42

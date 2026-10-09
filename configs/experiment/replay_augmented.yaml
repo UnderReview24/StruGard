@@ -1,0 +1,19 @@
+inherits: v2.yaml
+experiment:
+  name: replay_augmented_rae_5k_seed42
+  run_root: outputs/replay_augmented_rae/runs
+loss:
+  replay_weight: 1.0
+  distill_weight: 0.0
+replay_augmented:
+  memory_size: 2000
+  candidate_pool_size: 6000
+  probe_fraction: 0.20
+  current_replay_ratio: 1.0
+  gamma_new: 0.10
+  gamma_old: 0.10
+  epsilon: 0.00000001
+  checkpoint_selection: last_step
+  split_sha256: b22b56d2699e635e5348642cc2bc3e803d7539ea3e9c18342b877d1e1999289f
+  assignment_sha256: 2caa78e1c5f1c108ed3c6fe56d0a69a94def0e6df63ad7f01f9d48e7c5fb77c5
+  selection_embedding_cache: data/embeddings/structural_replay_selection

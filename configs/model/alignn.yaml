@@ -1,0 +1,7 @@
+model:
+  name: alignn_atomwise_pure
+  # Width and depth inherit the pinned official kNN scalar recipe (256, 4+4).
+  calculate_gradient: false
+  energy_mult_natoms: false
+  use_penalty: false
+  use_zbl: false

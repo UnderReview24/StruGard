@@ -1,0 +1,15 @@
+data:
+  dataset: matbench_mp_e_form
+  target: e_form
+  units: eV/atom
+  processed: data/processed
+  graph_cache: data/graphs
+  domain_method: crystal_system
+  symprec: 0.01
+  angle_tolerance: 5
+  graph:
+    two_body_cutoff: 8.0
+    three_body_cutoff: 3.5
+    max_neighbors: 12
+    atom_features: cgcnn
+    use_matscipy_topology: false

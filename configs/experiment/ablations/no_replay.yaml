@@ -1,0 +1,5 @@
+inherits: ../pilot.yaml
+experiment:
+  name: no_replay
+replay:
+  size: 0

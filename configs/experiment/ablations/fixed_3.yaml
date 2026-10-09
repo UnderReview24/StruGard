@@ -1,0 +1,7 @@
+inherits: ../pilot.yaml
+experiment:
+  name: fixed_3
+router:
+  mode: no_expand
+  initial_experts: 3
+  max_experts: 3

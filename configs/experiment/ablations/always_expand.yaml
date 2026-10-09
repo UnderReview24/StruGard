@@ -1,0 +1,5 @@
+inherits: ../pilot.yaml
+experiment:
+  name: always_expand
+router:
+  mode: always_expand

@@ -1,0 +1,19 @@
+inherits: pilot.yaml
+experiment:
+  name: mp_eform_soap_pilot5000_seed42
+domains:
+  method: soap
+  num_domains: 5
+  assignments: data/domains/soap_k5_seed0.csv
+  splits: data/domains/soap_k5_splits_seed42.json
+  groups: null
+  cluster_seed: 0
+  feature_path: data/embeddings/domain_features.npy
+  soap:
+    r_cut: 5.0
+    n_max: 4
+    l_max: 3
+    average: inner
+    periodic: true
+    compression:
+      mode: mu2

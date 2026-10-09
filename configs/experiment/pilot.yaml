@@ -1,0 +1,58 @@
+inherits:
+  - ../data/matbench.yaml
+  - ../model/alignn.yaml
+experiment:
+  name: mp_eform_pilot5000_seed42
+  seed: 42
+  sample_limit: 5000
+  status: engineering_pilot
+training:
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  epochs: 20
+  epochs_stage1: 20
+  epochs_later: 10
+  early_stop: 5
+domains:
+  method: crystal_system
+  num_domains: 3
+  assignments: data/domains/crystal3_seed42.csv
+  splits: data/domains/crystal3_splits_seed42.json
+  min_domain_size: 100
+  max_samples_per_domain: null
+  order_seed: 42
+  # Explicit family merges for the first 5000-sample / 3-domain pilot.
+  groups:
+    triclinic_monoclinic: [triclinic, monoclinic]
+    orthorhombic_tetragonal: [orthorhombic, tetragonal]
+    cubic_hexagonal_trigonal: [cubic, hexagonal, trigonal]
+shift_gate:
+  # Specified before inspecting cross-domain errors.
+  min_relative_increase: 0.10
+  min_absolute_increase: 0.02
+  bootstrap_samples: 2000
+  familywise_alpha: 0.05
+replay:
+  size: 2000
+  method: kcenter
+  candidate_pool_size: 6000
+stable:
+  mode: frozen
+  freeze_after_stage: 1
+  lr_multiplier: 0.01
+adapter:
+  rank: 16
+  dropout: 0.1
+router:
+  reuse_quantile: 0.90
+  expand_quantile: 0.99
+  novelty_window: 256
+  novelty_ratio: 0.30
+  persistence_windows: 3
+  mode: ours
+  max_experts: null
+  initial_experts: 1
+loss:
+  replay_weight: 1.0
+  distill_weight: 0.5

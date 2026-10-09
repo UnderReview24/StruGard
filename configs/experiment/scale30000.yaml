@@ -1,0 +1,25 @@
+inherits: pilot.yaml
+experiment:
+  name: mp_eform_30000_seed42
+  sample_limit: 30000
+  run_root: outputs/scale30000_seed42
+  baseline_output: outputs/baseline30000_seed42
+  shift_output: outputs/shift30000_seed42
+data:
+  processed: data/processed/n30000
+  split_seed: 42
+domains:
+  num_domains: 5
+  assignments: data/domains/crystal5_n30000.csv
+  splits: data/domains/crystal5_n30000_splits42.json
+  groups:
+    triclinic_monoclinic: [triclinic, monoclinic]
+    orthorhombic: [orthorhombic]
+    tetragonal: [tetragonal]
+    hexagonal_trigonal: [hexagonal, trigonal]
+    cubic: [cubic]
+training:
+  epochs: 100
+  epochs_stage1: 100
+  epochs_later: 40
+  early_stop: 10

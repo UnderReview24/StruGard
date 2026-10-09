@@ -1,0 +1,10 @@
+-e third_party/alignn
+pymatgen
+pandas<3
+scikit-learn
+PyYAML
+pytest
+matplotlib
+tabulate
+# Optional dataset download: pip install matminer
+# Optional SOAP domains: pip install dscribe

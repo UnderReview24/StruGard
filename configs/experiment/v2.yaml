@@ -1,0 +1,23 @@
+inherits: pilot.yaml
+experiment:
+  name: sp_crystal_v2_5k_seed42
+  run_root: outputs/v2_5k
+v2:
+  slow_gcn_layers: 2
+  slow_lr: 0.00001
+  expert_lr: 0.001
+  baseline_lr: 0.001
+  rank: 16
+  dropout: 0.1
+  epochs_per_stage: 10
+  adaptation_fraction: 0.5
+  gamma: 0.10
+  significant_ratio: 0.20
+  high_novelty_ratio: 0.05
+  reuse_quantile: 0.90
+  novelty_quantile: 0.99
+  replay_method: kcenter
+  cache: data/embeddings/v2_prefix.pt
+  protocol: outputs/v2_5k/protocol.pt
+  representation: stable_residual_plastic_context
+  checkpoint_selection: last_step

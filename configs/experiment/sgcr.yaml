@@ -1,0 +1,23 @@
+inherits: replay_augmented.yaml
+experiment:
+  name: sgcr_5k_seed42
+  run_root: outputs/sgcr/runs
+sgcr:
+  output_root: outputs/sgcr
+  deterministic: true
+  prototype_count: 8
+  structural_epsilon: 0.000001
+  gradient_epsilon: 0.00000001
+  nearest_prototypes: 2
+  local_fraction: 0.75
+  local_candidate_count: 128
+  global_candidate_count: 64
+  lambda_struct: 0.5
+  lambda_conflict: 0.5
+  calibration_batches: 256
+  gradient_stabilization_scope: last_block_and_head
+  shared_lr: 0.001
+  epochs_per_stage: 10
+  baseline_reference: outputs/residual_method/verified/runs/B_structural_replay
+  direct_reference: outputs/residual_method/verified/runs/A_direct_predictor
+  checkpoint_selection: last_step

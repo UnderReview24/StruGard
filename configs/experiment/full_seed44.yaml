@@ -1,0 +1,9 @@
+inherits: full_seed42.yaml
+experiment:
+  name: mp_eform_full_seed44
+  seed: 44
+  run_root: outputs/full_seed44
+  baseline_output: outputs/baseline_full_seed44
+  shift_output: outputs/shift_full_seed44
+domains:
+  order_seed: 44
